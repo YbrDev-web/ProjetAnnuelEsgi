@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Tasks;
+use App\Http\Controllers\TrelloControllers;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,5 +20,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/tasks/move', [TaskController::class, 'move'])->name('tasks.move');
+Route::get('/kanban', [TrelloControllers::class, 'showBoard'])->middleware('auth');
+
 
 require __DIR__.'/auth.php';
