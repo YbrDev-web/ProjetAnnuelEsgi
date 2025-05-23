@@ -22,7 +22,7 @@
 
     <div class="w-[300px] bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <div class="p-4 text-gray-900 dark:text-gray-100 font-bold border-b border-gray-300 dark:border-gray-700">
-            Kanboard - Projet 2
+            in course
         </div>
         <div class="p-4 space-y-2 max-h-[400px] overflow-y-auto">
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche C</div>
@@ -32,7 +32,7 @@
 
     <div class="w-[300px] bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <div class="p-4 text-gray-900 dark:text-gray-100 font-bold border-b border-gray-300 dark:border-gray-700">
-            Kanboard - Projet 3
+            Finish
         </div>
         <div class="p-4 space-y-2">
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche E</div>
