@@ -21,7 +21,7 @@
         <p class="text-gray-500 mb-6 text-sm">
             Le board sur lequel vous voulez avoir accès nécessite une connexion
         </p>
-        <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow">
+        <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-blue px-6 py-2 rounded shadow">
             S’inscrire
         </a>
         <p class="text-xs text-gray-500 mt-4">
