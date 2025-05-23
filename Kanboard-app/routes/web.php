@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/tasks/move', [TasksController::class, 'move'])->name('tasks.move');
+Route::get('/tasks/move', [TasksController::class, 'move'])->name('tasks.move');
 Route::get('/kanban', [TrelloControllers::class, 'showBoard'])->middleware('auth');
 
 
