@@ -28,4 +28,6 @@
             Déjà un compte ? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Connectez ici</a>
         </p>
     </div>
+
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-blue-50 to-transparent rounded-t-[3rem]"></div>
 </x-app-layout>

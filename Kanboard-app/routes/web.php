@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Tasks;
+use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TrelloControllers;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/tasks/move', [TaskController::class, 'move'])->name('tasks.move');
+Route::post('/tasks/move', [TasksController::class, 'move'])->name('tasks.move');
 Route::get('/kanban', [TrelloControllers::class, 'showBoard'])->middleware('auth');
 
 
