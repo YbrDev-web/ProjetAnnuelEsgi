@@ -15,17 +15,17 @@
     </div> -->
     
     <div class="flex-1 flex flex-col justify-center items-center text-center px-4">
-            <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-3">
-                S’inscrire pour voir votre board
-            </h1>
-            <p class="text-gray-500 mb-6 text-sm">
-                Le board sur lequel vous voulez avoir accès nécessite une connexion
-            </p>
-            <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow">
-                S’inscrire
-            </a>
-            <p class="text-xs text-gray-500 mt-4">
-                Déjà un compte ? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Connectez ici</a>
-            </p>
-        </div>
+        <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-3">
+            S’inscrire pour voir votre board
+        </h1>
+        <p class="text-gray-500 mb-6 text-sm">
+            Le board sur lequel vous voulez avoir accès nécessite une connexion
+        </p>
+        <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow">
+            S’inscrire
+        </a>
+        <p class="text-xs text-gray-500 mt-4">
+            Déjà un compte ? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Connectez ici</a>
+        </p>
+    </div>
 </x-app-layout>
