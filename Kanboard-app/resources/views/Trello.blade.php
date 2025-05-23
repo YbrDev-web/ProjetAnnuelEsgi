@@ -18,6 +18,9 @@
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche E</div>
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche F</div>
         </div>
+        <button class="p-3 text-sm text-blue-600 hover:underline text-left">
+                + Ajouter une carte
+        </button>
     </div>
 
     <div class="w-[300px] bg-white dark:bg-gray-800 rounded-lg shadow-md">
@@ -28,6 +31,9 @@
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche C</div>
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche D</div>
         </div>
+        <button class="p-3 text-sm text-blue-600 hover:underline text-left">
+                + Ajouter une carte
+        </button>
     </div>
 
     <div class="w-[300px] bg-white dark:bg-gray-800 rounded-lg shadow-md">
@@ -35,9 +41,12 @@
             Finish
         </div>
         <div class="p-4 space-y-2">
-            <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche E</div>
+            <div class="bg-blue-100 dark:bg-blue-700 p-3 rounded">Tâche E</div>
             <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">Tâche F</div>
         </div>
+        <button class="p-3 text-sm text-blue-600 hover:underline text-left">
+                + Ajouter une carte
+        </button>
     </div>
 </div>
 </x-app-layout>
