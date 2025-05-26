@@ -41,4 +41,8 @@
     </button>
 </div>
 </x-app-layout>
+<button class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full shadow-sm transition duration-200">
+    <span class="text-xl">+</span>
+    <span>Ajoutez une autre liste</span>
+</button>
 
