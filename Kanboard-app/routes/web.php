@@ -30,5 +30,9 @@ Route::get('/solutions', function () {
     return view('solutions');
 })->name('solutions');
 
+Route::get('/Ressources', function () {
+    return view('Ressources');
+})->name('Ressources');
+
 
 require __DIR__.'/auth.php';
