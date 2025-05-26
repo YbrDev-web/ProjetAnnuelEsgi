@@ -26,6 +26,9 @@ Route::get('/fonctionnalités', function () {
     return view('fonctionnalités');
 })->name('fonctionnalités');
 
+Route::get('/solutions', function () {
+    return view('solutions');
+})->name('solutions');
 
 
 require __DIR__.'/auth.php';
