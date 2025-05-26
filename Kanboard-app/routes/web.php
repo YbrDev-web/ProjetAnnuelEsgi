@@ -22,5 +22,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/tasks/move', [TasksController::class, 'move'])->name('tasks.move');
 Route::get('/kanban', [TrelloControllers::class, 'showBoard'])->middleware('auth');
 
+Route::get('/fonctionnalités', function () {
+    return view('fonctionnalités');
+})->name('fonctionnalités');
+
+
 
 require __DIR__.'/auth.php';
