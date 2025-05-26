@@ -9,35 +9,27 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Tableaux Kanban</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Gérez vos projets visuellement avec des colonnes personnalisables.</p>
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Offre gratuite - 0 euros</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Gérez vos projets gratuitement avec des colonnes personnalisables.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Cette offre est limité dans le temps.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">les fonctionnalités gratuites du kanboard sont limités.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Colonnes limités.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Couleur personnalisable.</p>
             </div>
 
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Drag & Drop</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Déplacez vos cartes d'une colonne à une autre facilement.</p>
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Abonnement prenium - 19,99 euros</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Déplacez vos cartes d'une colonne à une autre facilement en illimité.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Toutes les fonctionnalités sont disponibles.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Utilisation illimité des diffèrents modèles de kanboard.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">utilisation plus rapide.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Facilite la complexité des projets.</p>
             </div>
 
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Collaboratif</h3>
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Abonnement entreprise - 35,00 euros</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Travaillez en équipe avec des utilisateurs multiples sur un même projet.</p>
             </div>
-
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Statistiques</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Visualisez la progression de vos projets avec des graphiques clairs.</p>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Mobile-friendly</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Utilisez votre tableau depuis n'importe quel appareil.</p>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Notifications</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Recevez des alertes sur les changements et les nouvelles tâches.</p>
-            </div>
-
         </div>
     </div>
 </x-app-layout>
