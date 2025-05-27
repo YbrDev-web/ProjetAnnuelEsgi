@@ -42,5 +42,8 @@ Route::get('/Pricing', function () {
     return view('Pricing');
 })->name('Pricing');
 
+Route::get('/trello', function () {
+    return view('trello');
+})->name('trello');
 
 require __DIR__.'/auth.php';
