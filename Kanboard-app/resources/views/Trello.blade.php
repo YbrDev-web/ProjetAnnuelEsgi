@@ -1,8 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <!-- En-tête vide pour l’instant -->
-    </x-slot>
-
     <div class="p-6">
         <div class="flex justify-center gap-6 flex-wrap">
 
