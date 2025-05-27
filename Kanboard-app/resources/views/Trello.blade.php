@@ -1,4 +1,10 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+            Trello
+        </h2>
+    </x-slot>
+
     <div class="p-6">
         <div class="flex justify-center gap-6 flex-wrap">
 
@@ -55,7 +61,25 @@
             </button>
         </div>
     </div>
+
+    <div class="w-64 bg-blue-100 p-4 rounded-r-lg text-sm">
+  <div class="mb-4">
+    <h2 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
+      📥 Inbox
+    </h2>
+    <div class="bg-white p-3 rounded shadow-sm">
+      <p class="text-gray-700 mb-1">Téléchargez l'application mobile Trello et capturez où que vous soyez.</p>
+      <a href="#" class="text-blue-600 underline text-sm">Téléchargez l'application Trello</a>
+    </div>
+  </div>
+  
+  <div class="mt-10 flex items-center gap-2 text-gray-700">
+    🔒 <span>Une boîte de réception 100 % privée</span>
+  </div>
+</div>
+
 </x-app-layout>
+
 
 
 
