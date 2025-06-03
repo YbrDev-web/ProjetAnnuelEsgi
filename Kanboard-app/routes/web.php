@@ -46,4 +46,9 @@ Route::get('/trello', function () {
     return view('trello');
 })->name('trello');
 
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
+
+
 require __DIR__.'/auth.php';
