@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Board;
 use App\Models\User;
-
 
 
 class DashboardController extends Controller
@@ -14,13 +14,9 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
+        // Récupérer tous les tableaux liés à l'utilisateur (propriétaire ou membre)
         $boards = $user->boards()->with('users')->get();
-        $allUsers = User::all(); // ✅ Ajouter cette ligne
 
-        return view('dashboard', compact('boards', 'allUsers'));
+        return view('dashboard', compact('boards'));
     }
-
-
 }
-
-
