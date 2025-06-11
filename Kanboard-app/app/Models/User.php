@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -45,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function boards()
+    {
+        return $this->belongsToMany(Board::class, 'board_user')->withPivot('role')->withTimestamps();
+    }
+
+
+
 }

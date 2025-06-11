@@ -1,0 +1,92 @@
+/* Style général */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Section principale */
+  .dashboard {
+    padding: 20px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* En-tête de section */
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .section-header h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  /* Liste des groupes */
+  .board-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Carte de groupe */
+  .board-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  .board-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .board-card strong {
+    font-size: 18px;
+    color: #2c3e50;
+  }
+  
+  /* Badge */
+  .board-badge {
+    background-color: #eef2f7;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Boutons */
+  .small-button {
+    font-size: 14px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: violet;
+
+  }
+  
+  .small-button:hover {
+    opacity: 0.9;
+  } 
+  
+  /* Bouton "Gérer les membres" */
+  .small-button.manage {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Bouton "Quitter le groupe" */
+  .small-button.quit {
+    color: #fff;
+  }
+  
