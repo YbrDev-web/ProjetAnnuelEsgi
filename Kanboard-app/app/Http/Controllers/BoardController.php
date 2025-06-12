@@ -81,34 +81,30 @@ class BoardController extends Controller
     }
 
    
-public function invite(Request $request, Board $board)
-{
-    $request->validate([
-        'email' => 'required|email|exists:users,email',
-        'role' => 'required|in:admin,member,viewer'
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    // Évite les doublons
-    if (!$board->users->contains($user->id)) {
-        // Vérifie qu'une invitation n'existe pas déjà
+    public function invite(Request $request, Board $board)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'role' => 'required|in:admin,member,viewer'
+        ]);
+    
+        $user = User::where('email', $request->email)->first();
+        $token = Str::random(40);
+    
+        // Crée une invitation si elle n’existe pas déjà
         if (!Invitation::where('user_id', $user->id)->where('board_id', $board->id)->exists()) {
-            $token = Str::random(40);
-
             Invitation::create([
                 'board_id' => $board->id,
                 'user_id' => $user->id,
                 'role' => $request->role,
                 'token' => $token,
             ]);
-
+    
             $user->notify(new GroupInvitationNotification($board, $token));
         }
+    
+        return back()->with('success', 'Invitation envoyée.');
     }
-
-    return back()->with('success', 'Invitation envoyée.');
-}
 
 
 

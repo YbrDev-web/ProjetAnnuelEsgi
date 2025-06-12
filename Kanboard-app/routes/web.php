@@ -48,6 +48,7 @@ Route::get('/cards/{card}/edit', [CardController::class, 'edit'])->name('cards.e
 Route::put('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
 Route::post('/cards/{card}/move', [\App\Http\Controllers\CardController::class, 'move'])->name('cards.move');
 Route::get('/boards/{board}/cards', [CardController::class, 'index'])->name('cards.index');
+Route::post('/boards/{board}/invite', [BoardController::class, 'invite'])->name('boards.members.invite');
 
 Route::get('/cards/{card}/edit', [CardController::class, 'edit'])->name('cards.edit');
 Route::patch('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
