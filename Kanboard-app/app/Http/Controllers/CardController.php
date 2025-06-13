@@ -64,6 +64,7 @@ public function update(Request $request, Card $card)
     return redirect()->route('boards.show', $card->list->board_id)->with('success', 'Carte mise à jour.');
 }
 
+
 public function destroy(Card $card)
 {
     $card->delete();

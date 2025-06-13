@@ -36,12 +36,11 @@ header a:hover{
     width: 100%;
     height: auto;
     overflow: hidden;
-    margin-top: 20px;
 }
 
 .banner img {
     width: 100%;
-    height: 400px;
+    height: 500px;
     display: block;
     opacity: 60%;
 }
@@ -260,4 +259,28 @@ header a:hover{
     font-size: 0.9rem;
     color: #aaa;
 }
+.auth-links {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.auth-links a:hover {
+    background-color: black;
+    color: white;
+}
+
 

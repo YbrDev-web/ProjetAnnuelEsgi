@@ -16,43 +16,24 @@
        
       </style>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                        >
-                            Log in
-                        </a>
+    <div class="banner">
+    @if (Route::has('login'))
+        <nav class="auth-links">
+            @auth
+                <a href="{{ url('/dashboard') }}">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}">Log in</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}">Register</a>
+                @endif
+            @endauth
+        </nav>
+    @endif
 
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                            >
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
+    <img src="{{ asset('images/banner.png') }}" alt="Bannière">
+    <h2 class="banner-text">La gestion de projet, simplifiée en un tableau</h2>
+</div>
 
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
-        <main>
-            <div class="banner">
-                <img src="{{asset('images/banner.png')}}" alt="Bannière">
-                <h2 class="banner-text">La gestion de projet, simplifiée en un tableau</h2>
-            </div>
             <section class="presentation">
                 <div class="container">
                     <h2>Gérez vos projets, visuellement et efficacement</h2>

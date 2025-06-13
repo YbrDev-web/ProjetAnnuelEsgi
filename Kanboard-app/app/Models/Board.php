@@ -33,8 +33,9 @@ class Board extends Model
 
     public function cards()
     {
-        return $this->hasManyThrough(Card::class, BoardList::class, 'board_id', 'list_id');
+        return $this->hasManyThrough(\App\Models\Card::class, \App\Models\BoardList::class, 'board_id', 'list_id');
     }
+    
     
 
 }
