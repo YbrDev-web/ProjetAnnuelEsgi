@@ -40,53 +40,18 @@
       <!-- Liste des tableaux -->
       <div class="board-list">
         @forelse($boards as $board)
-          <div class="board-card">
-            <strong>{{ $board->name }}</strong>
-            <div class="board-badge">{{ $board->description }}</div>
-
-            <!-- Lien vers gestion des membres -->
-            @if(Auth::id() === $board->user_id)
-              <a href="{{ route('boards.members', $board) }}" style="font-size: 0.8rem; margin-top: 8px; display: inline-block; color: #007bff;">
-                ⚙️ Gérer les membres
-              </a>
-            @endif
-
-            <!-- Affichage des membres -->
-            <div class="board-badge" style="margin-top: 10px;">
-              Membres :
-              <ul style="padding-left: 15px; list-style: disc;">
-                @foreach($board->users as $user)
-                  <li style="font-size: 0.85rem;">
-                    👤 {{ $user->name }}
-                    @if(Auth::id() === $board->user_id && $user->id !== $board->user_id)
-                      <form action="{{ route('boards.removeMember', [$board, $user]) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" style="border: none; background: none; color: red; cursor: pointer;">❌</button>
-                      </form>
-                    @endif
-                  </li>
-                @endforeach
-              </ul>
-            </div>
-
-            <!-- Ajouter un membre -->
-            @if(Auth::id() === $board->user_id)
-              <form action="{{ route('boards.addMember', $board) }}" method="POST" style="margin-top: 10px;">
-                @csrf
-                <select name="user_id" required>
-                  <option value="">+ Ajouter un membre</option>
-                  @foreach($allUsers as $user)
-                    @if($user->id !== auth()->id() && !$board->users->contains($user->id))
-                      <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endif
-                  @endforeach
-                </select>
-                <button type="submit" class="small-button">Ajouter</button>
-              </form>
-            @endif
-
-          </div>
+        <a href="{{ route('boards.show', $board) }}" class="board-card" style="text-decoration: none; color: inherit;">
+  <strong>{{ $board->name }}</strong>
+  <div class="board-badge">{{ $board->description }}</div>
+  <div class="board-badge" style="margin-top: 5px;">
+    Rôle :
+    @if($board->user_id === auth()->id())
+      Propriétaire
+    @else
+      {{ ucfirst($board->pivot->role ?? 'membre') }}
+    @endif
+  </div>
+</a>
         @empty
           <p>Aucun tableau trouvé. Créez-en un !</p>
         @endforelse
