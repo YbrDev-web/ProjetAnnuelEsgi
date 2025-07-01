@@ -157,6 +157,9 @@ class BoardController extends Controller
         }
     
         $board->load('lists.cards'); // Assure que 'lists' est bien la relation correcte
+        $board->load(['lists.cards.assignedTo']);
+        $board->load('lists.cards.assignedTo', 'lists.cards.createdBy');
+
     
         return view('boards.show', compact('board'));
     }

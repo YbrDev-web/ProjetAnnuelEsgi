@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\BoardListModel;
 use App\Models\Card;
 use App\Models\Board;
+use Carbon\Carbon;
 
 
 class CardController extends Controller
@@ -42,14 +43,24 @@ class CardController extends Controller
         'description' => 'nullable|string',
     ]);
 
-    $list->cards()->create($request->only('title', 'description'));
-
+    $list->cards()->create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'category' => $request->category,
+        'priority' => $request->priority,
+        'due_date' => $request->due_date,
+        'assigned_to' => $request->assigned_to,
+        'created_by' => auth()->id(),
+    ]);
+    
     return redirect()->route('boards.show', $list->board_id)->with('success', 'Carte ajoutée');
 }
 
 public function edit(Card $card)
 {
     return view('cards.edit', compact('card'));
+    $card->load('list.board.users');
+
 }
 
 public function update(Request $request, Card $card)
@@ -57,9 +68,20 @@ public function update(Request $request, Card $card)
     $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'nullable|string',
+        'category' => 'nullable|string|max:255',
+        'priority' => 'nullable|in:basse,moyenne,élevée',
+        'due_date' => 'nullable|date',
+        'assigned_to' => 'nullable|exists:users,id',
     ]);
 
-    $card->update($request->only('title', 'description'));
+    $card->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'category' => $request->category,
+        'priority' => $request->priority,
+        'due_date' => $request->due_date,
+        'assigned_to' => $request->assigned_to,
+    ]);
 
     return redirect()->route('boards.show', $card->list->board_id)->with('success', 'Carte mise à jour.');
 }

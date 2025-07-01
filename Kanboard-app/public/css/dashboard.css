@@ -75,77 +75,113 @@
   }
   
   /* DASHBOARD */
-  .dashboard {
-    flex: 1;
-    padding: 30px 20px;
-    color: white;
-  }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar input {
-    padding: 8px 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    width: 250px;
-  }
-  
-  .create-button, .small-button {
-    background-color: #5aac44;
-    color: white;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .create-button:hover,
-  .small-button:hover {
-    background-color: #519839;
-  }
-  
-  /* BOARDS */
-  .board-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .board-card {
-    width: 220px;
-    background-color: #ffffff;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #333;
-    padding: 10px;
-    text-align: center;
-    transition: background-color 0.3s;
-  }
-  
-  .board-card:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .board-badge {
-    font-size: 0.8rem;
-    color: #777;
-    margin-top: 5px;
-  }
+  /* === Dashboard Container === */
+.dashboard {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+}
+
+/* === En-tête de section === */
+.dashboard .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.dashboard .section-header h2 {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+/* === Barre de recherche === */
+.dashboard .search-bar {
+  position: relative;
+  flex: 1;
+  max-width: 300px;
+}
+.dashboard .search-bar input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+.dashboard .search-bar input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+/* === Bouton principal === */
+.dashboard .create-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.dashboard .create-button:hover {
+  background-color: #4f46e5;
+}
+.dashboard .create-button:active {
+  transform: scale(0.97);
+}
+
+/* === Liste des boards === */
+.dashboard .board-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* === Carte de board === */
+.dashboard .board-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.dashboard .board-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  background-color: #dff0d8;
+  transition: 1s;
+}
+.dashboard .board-card strong {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #111827;
+}
+
+/* === Badge de description & rôle === */
+.dashboard .board-badge {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+}
+.dashboard .board-badge.role {
+  background: #d1fae5;
+  color: #065f46;
+}
+
   
   /* MODAL */
   .modal {

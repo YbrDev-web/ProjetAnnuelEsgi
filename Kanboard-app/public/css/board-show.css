@@ -1,135 +1,259 @@
-/* Container principal */
+/* board-show.css – Trello-like avec scroll interne pour DnD */
+
+/* Variables de couleur */
+:root {
+  --board-bg:      #0D1E2F;
+  --list-bg:       #DFE8EF;
+  --card-bg:       #FFFFFF;
+  --btn-bg:        #2AA198;
+  --btn-bg-hover:  #249386;
+  --text-dark:     #172B4D;
+  --text-light:    #FFFFFF;
+  --header-bg:     #0B1B2B;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: var(--board-bg);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.board-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--btn-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.board-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-light);
+}
+.board-header .actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.board-header .actions .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.board-header .small-button {
+  background: #0052CC;
+  color: var(--text-light);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* WRAPPER */
 .wrapper {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 20px;
+  padding: 1rem 1.5rem;
+}
+.board-description {
+  margin-bottom: 1rem;
+  color: rgba(255,255,255,0.85);
+}
+
+/* KANBAN BOARD */
+.kanban-board {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+/* LIST – colonnes auto‐dimensionnées */
+.list {
+  width: max-content;
+  min-width: 200px;
+  max-width: 300px;
+  flex-shrink: 0;
+  background: var(--list-bg);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+
+  /* Garde une hauteur max et scroll interne */
+  max-height: calc(100vh - 120px); /* 120px = header + paddings approximatifs */
+}
+.list h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+/* CARDS */
+.card-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto; /* scroll interne si trop de cartes */
+  padding-right: 0.25rem;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 6px;
+  padding: 0.75rem;
+  box-shadow: 0 1px 0 rgba(9,30,66,0.25);
+  cursor: grab;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.card:active {
+  cursor: grabbing;
+  box-shadow: 0 4px 8px rgba(9,30,66,0.25);
+  transform: translateY(2px);
+}
+.card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text-dark);
+}
+.card p {
+  font-size: 0.85rem;
+  color: #5E6C84;
+}
+
+/* BOUTON + AJOUTER UNE CARTE */
+.open-modal-button {
+  margin-top: 0.5rem;
+  background: var(--btn-bg);
+  color: var(--text-light);
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.open-modal-button:hover {
+  background: var(--btn-bg-hover);
+}
+
+/* BOUTON + AJOUTER UNE AUTRE LISTE */
+.add-list {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.12);
+  color: var(--text-light);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-list:hover {
+  background: rgba(255,255,255,0.20);
+}
+
+/* MODAL */
+/* === MODAL STYLES === */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 90%;
+  max-width: 450px;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.modal-content button[type="submit"] {
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
   }
-  
-  /* Titre */
-  .wrapper h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .wrapper p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 30px;
-  }
-  
-  /* Zone Kanban */
-  .kanban-board {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-  
-  /* Colonne */
-  .list {
-    flex: 0 0 250px;
-    background: #f4f4f4;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    max-height: 90vh;
-  }
-  
-  .list h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  /* Zone contenant les cartes */
-  .card-container {
-    flex-grow: 1;
-    min-height: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  /* Carte */
-  .card {
-    background: white;
-    border-radius: 8px;
-    padding: 10px 12px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    cursor: grab;
-    transition: transform 0.2s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.02);
-  }
-  
-  .card strong {
-    font-size: 15px;
-    display: block;
-    color: #111;
-    margin-bottom: 5px;
-  }
-  
-  .card p {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-  }
-  
-  /* Formulaire d'ajout */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  form input, form textarea {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  form button {
-    padding: 8px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  
-  form button:hover {
-    background-color: #0056b3;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-  
-  .close-modal {
-    float: right;
-    font-size: 20px;
-    cursor: pointer;
-  }
-    
+}
+
