@@ -63,35 +63,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/tasks/move', [TasksController::class, 'move'])->name('tasks.move');
-Route::get('/kanban', [TrelloControllers::class, 'showBoard'])->middleware('auth');
-
-Route::get('/fonctionnalités', function () {
-    return view('fonctionnalités');
-})->name('fonctionnalités');
-
-Route::get('/solutions', function () {
-    return view('solutions');
-})->name('solutions');
-
-Route::get('/Ressources', function () {
-    return view('Ressources');
-})->name('Ressources');
-
-Route::get('/Offres', function () {
-    return view('Offres');
-})->name('Offres');
-
-Route::get('/Pricing', function () {
-    return view('Pricing');
-})->name('Pricing');
-
-Route::get('/trello', function () {
-    return view('trello');
-})->name('trello');
-
-Route::get('/calendar', function () {
-    return view('calendar');
-})->name('calendar');
 
 
 require __DIR__.'/auth.php';
