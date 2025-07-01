@@ -1,0 +1,258 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f5f7;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* STRUCTURE */
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-container {
+    display: flex;
+    flex: 1;
+  }
+  
+  /* WELCOME */
+  .welcome {
+    background-color: #dff0d8;
+    text-align: center;
+    padding: 12px;
+    color: #3c763d;
+    font-weight: 500;
+  }
+  
+  /* SIDEBAR */
+  .sidebar {
+    width: 220px;
+    background-color: #f7f8fa;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar.hidden {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar a {
+    display: block;
+    padding: 8px 12px;
+    color: #333;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #e1e5eb;
+  }
+  
+  /* DASHBOARD */
+  /* === Dashboard Container === */
+.dashboard {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+}
+
+/* === En-tête de section === */
+.dashboard .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.dashboard .section-header h2 {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+/* === Barre de recherche === */
+.dashboard .search-bar {
+  position: relative;
+  flex: 1;
+  max-width: 300px;
+}
+.dashboard .search-bar input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+.dashboard .search-bar input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+/* === Bouton principal === */
+.dashboard .create-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.dashboard .create-button:hover {
+  background-color: #4f46e5;
+}
+.dashboard .create-button:active {
+  transform: scale(0.97);
+}
+
+/* === Liste des boards === */
+.dashboard .board-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* === Carte de board === */
+.dashboard .board-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.dashboard .board-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  background-color: #dff0d8;
+  transition: 1s;
+}
+.dashboard .board-card strong {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #111827;
+}
+
+/* === Badge de description & rôle === */
+.dashboard .board-badge {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+}
+.dashboard .board-badge.role {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+  
+  /* MODAL */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  .modal-content input,
+  .modal-content textarea,
+  .modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modal-content button[type="submit"] {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 0.9rem;
+    background-color: #f4f4f4;
+  }
+  

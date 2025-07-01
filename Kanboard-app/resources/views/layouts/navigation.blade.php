@@ -8,31 +8,6 @@
                         {{ __('Trello') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('fonctionnalités')" :active="request()->routeIs('fonctionnalités')">
-                        {{ __('Fonctionnalités') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('solutions')" :active="request()->routeIs('solutions')">
-                        {{ __('solutions') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('Offres')" :active="request()->routeIs('Offres')">
-                        {{ __('Offres') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('Pricing')" :active="request()->routeIs('Pricing')">
-                        {{ __('Pricing') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('Ressources')" :active="request()->routeIs('Ressources')">
-                        {{ __('Ressources') }}
-                    </x-nav-link>
-                </div>
             </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -114,3 +89,4 @@
         </div>
     </div>
 </nav>
+

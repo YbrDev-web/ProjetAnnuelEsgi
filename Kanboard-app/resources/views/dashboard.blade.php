@@ -1,33 +1,89 @@
-<x-app-layout>
-    <x-slot name="header">
-        
-    </x-slot>
+@extends('layouts.app')
 
-    <!-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <strong>{{ __("S'inscrire pour voir votre board") }}</strong>
-                    <h3>{{ __("Le board") }}</h3>
-                </div>
-            </div>
+@section('content')
+<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+
+<div class="wrapper">
+
+  <!-- Message de bienvenue -->
+  <div class="welcome">
+    👋 Bienvenue, {{ Auth::user()->name }} !
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="main-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="{{ route('dashboard') }}">🏠 Tableau de bord</a></li>
+        <li><a href="{{ route('boards.my') }}">📁 Mes tableaux</a></li>
+        <li><a href="{{ route('groups.index') }}">👥 Groupes</a></li>
+        <li><a href="{{ route('settings.index') }}">⚙️ Paramètres</a></li>
+        <li><a href="{{ route('help.index') }}">❓ Aide</a></li>
+      </ul>
+    </aside>
+
+    <!-- Zone dashboard -->
+    <main class="dashboard">
+
+      <div class="section-header">
+        <h2>Vos tableaux</h2>
+        <div style="display: flex; gap: 10px;">
+          <div class="search-bar">
+            <input type="text" placeholder="Rechercher un tableau...">
+          </div>
+          <button class="create-button" onclick="openModal()">+ Créer un tableau</button>
         </div>
-    </div> -->
-    
-    <div class="flex-1 flex flex-col justify-center items-center text-center px-4">
-        <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-3">
-            S’inscrire pour voir votre board
-        </h1>
-        <p class="text-gray-500 mb-6 text-sm">
-            Le board sur lequel vous voulez avoir accès nécessite une connexion
-        </p>
-        <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-blue px-6 py-2 rounded shadow">
-            S’inscrire
-        </a>
-        <p class="text-xs text-gray-500 mt-4">
-            Déjà un compte ? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Connectez ici</a>
-        </p>
-    </div>
+      </div>
 
-    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-blue-50 to-transparent rounded-t-[3rem]"></div>
-</x-app-layout>
+      <!-- Liste des tableaux -->
+      <div class="board-list">
+        @forelse($boards as $board)
+        <a href="{{ route('boards.show', $board) }}" class="board-card" style="text-decoration: none; color: inherit;">
+  <strong>{{ $board->name }}</strong>
+  <div class="board-badge">{{ $board->description }}</div>
+  <div class="board-badge" style="margin-top: 5px;">
+    Rôle :
+    @if($board->user_id === auth()->id())
+      Propriétaire
+    @else
+      {{ ucfirst($board->pivot->role ?? 'membre') }}
+    @endif
+  </div>
+</a>
+        @empty
+          <p>Aucun tableau trouvé. Créez-en un !</p>
+        @endforelse
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © {{ now()->year }} MonApp. Inspiré de Trello.
+  </footer>
+</div>
+
+<!-- Modal création tableau -->
+<div class="modal" id="boardModal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <h3>Créer un nouveau tableau</h3>
+    <form action="{{ route('boards.store') }}" method="POST">
+      @csrf
+      <label for="boardName">Nom du tableau</label>
+      <input type="text" id="boardName" name="name" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="3"></textarea>
+
+      <button type="submit">Créer</button>
+    </form>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="{{ asset('js/dashboard.js') }}"></script>
+@endsection
