@@ -2,3 +2,47 @@
 @tailwind components;
 @tailwind utilities;
    
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #0f172a; /* bleu foncé (dark mode) */
+  }
+  
+  .sidebar {
+    width: 220px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #0f172a;
+    color: white;
+  }
+  
+  body.dark .sidebar {
+    background-color: #1f2937;
+  }
+  
+  body.dark .sidebar a {
+    color: #ddd;
+  }
+    
+  

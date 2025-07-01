@@ -1,3 +1,4 @@
+@php($hideNavigation = true)
 @extends('layouts.app')
 
 @section('content')
@@ -15,9 +16,12 @@
     <button class="small-button">Partager</button>
   </div>
 </div>
-
-<a href="{{ route('cards.list', $board) }}" style="color: white;">Voir les tâches en liste</a><a href=""></a><a href=""></a>
-
+<div class="menu_tableau" style="display: flex; flex-direction: row; gap: 20px; justify-content:center;">
+  <a href="{{ route('cards.list', $board) }}" style="color: white;">Voir les tâches en liste</a>
+  <a href="{{ route('dashboard') }}" style="color: white;">Dashboard</a>
+  <a href=""></a>
+</div>
+  
 <div class="wrapper">
   {{-- Description du board --}}
 

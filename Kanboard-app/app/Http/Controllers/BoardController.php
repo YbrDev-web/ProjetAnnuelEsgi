@@ -28,32 +28,36 @@ class BoardController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
         ]);
+    
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('boards', 'public');
+        }
     
         $board = Board::create([
+            'name' => $data['name'],
+            'description' => $data['description'] ?? null,
+            'image' => $data['image'] ?? null,
             'user_id' => auth()->id(),
-            'name' => $request->name,
-            'description' => $request->description,
         ]);
     
-        // Le créateur devient membre
         $board->users()->attach(auth()->id(), ['role' => 'admin']);
     
-        // ✅ Colonnes par défaut
-        $defaultLists = ['À faire', 'En cours', 'Fait', 'Annulé'];
-    
-        foreach ($defaultLists as $title) {
+        // Ajout des listes par défaut
+        foreach (['À faire', 'En cours', 'Fait', 'Annulé'] as $title) {
             $board->lists()->create([
                 'title' => $title,
                 'is_terminal' => in_array($title, ['Fait', 'Annulé']),
             ]);
         }
     
-        return redirect()->route('dashboard')->with('success', 'Tableau créé avec ses colonnes.');
+        return redirect()->route('dashboard')->with('success', 'Tableau créé avec image.');
     }
+    
     
     public function addMember(Request $request, Board $board)
     {
@@ -163,5 +167,22 @@ class BoardController extends Controller
     
         return view('boards.show', compact('board'));
     }
+
+    public function destroy(Board $board)
+{
+    if ($board->user_id !== auth()->id()) {
+        abort(403, 'Vous n\'êtes pas autorisé à supprimer ce tableau.');
+    }
+
+    // Supprimer l'image s'il y en a une
+    if ($board->image) {
+        \Storage::disk('public')->delete($board->image);
+    }
+
+    $board->delete();
+
+    return redirect()->route('dashboard')->with('success', 'Tableau supprimé avec succès.');
+}
+
     
 }
