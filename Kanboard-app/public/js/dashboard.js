@@ -29,3 +29,28 @@ function toggleSidebar() {
         sidebar.classList.toggle('hidden');
     }
 }
+
+function openRoleModal(boardId, userId, currentRole) {
+    const modal = document.getElementById('roleModal');
+    const form = document.getElementById('roleForm');
+    const select = document.getElementById('roleSelect');
+
+    select.value = currentRole;
+    form.action = `/boards/${boardId}/members/${userId}`;
+    modal.style.display = 'flex';
+  }
+
+  function closeRoleModal() {
+    document.getElementById('roleModal').style.display = 'none';
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById('roleModal');
+    if (event.target === modal) {
+      closeRoleModal();
+    }
+};
+
+
+
+

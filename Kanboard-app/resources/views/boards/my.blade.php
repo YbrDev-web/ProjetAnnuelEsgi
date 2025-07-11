@@ -28,8 +28,13 @@
       {{ ucfirst($board->pivot->role ?? 'membre') }}
     @endif
   </div>
-</a>
+  <button
+  onclick="openRoleModal({{ $board->id }}, {{ auth()->id() }}, '{{ $board->pivot->role }}')"
+  class="btn-role">
+  Modifier mon rôle
+</button>
 
+</a>
 
     @empty
       <p>Aucun tableau trouvé. Créez-en un !</p>
@@ -54,6 +59,33 @@
     </form>
   </div>
 </div>
+
+<!-- Modal de modification de rôle -->
+<!-- Modal de modification de rôle -->
+<div class="modal" id="roleModal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeRoleModal()">&times;</span>
+    <h3>Modifier votre rôle</h3>
+    <form id="roleForm" method="POST">
+      @csrf
+      @method('PATCH')
+
+      <label for="roleSelect">Choisissez un rôle</label>
+      <select name="role" id="roleSelect" required>
+        <option value="admin">Admin</option>
+        <option value="member">Membre</option>
+        <option value="viewer">Lecteur</option>
+      </select>
+
+      <button type="submit">Mettre à jour</button>
+    </form>
+  </div>
+</div>
+
+<!-- Ton script à coller juste avant la fin -->
+
+
+
 
 <script src="{{ asset('js/dashboard.js') }}"></script>
 @endsection
