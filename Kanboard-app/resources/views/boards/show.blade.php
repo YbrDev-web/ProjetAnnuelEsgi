@@ -12,8 +12,12 @@
     {{ $board->name }}
   </div>
   <div class="actions">
-   
-    <button class="small-button">Partager</button>
+  <div class="actions">
+    @if($board->user_id === auth()->id())
+      <button class="small-button" onclick="openInviteModal()">Partager</button>
+    @endif
+</div>
+
   </div>
 </div>
 <div class="menu_tableau" style="display: flex; flex-direction: row; gap: 20px; justify-content:center;">
@@ -148,6 +152,31 @@
   </div>
 </div>
 
+<!-- === MODALE INVITATION === -->
+<div class="modal" id="inviteModal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeInviteModal()">&times;</span>
+    <h3>➕ Inviter un membre</h3>
+
+    <form action="{{ route('boards.members.invite', $board) }}" method="POST" style="max-width: 400px;">
+      @csrf
+
+      <label for="email">Email de l'utilisateur</label>
+      <input type="email" name="email" required>
+
+      <label for="role">Rôle</label>
+      <select name="role" required>
+        <option value="member">Membre</option>
+        <option value="admin">Admin</option>
+        <option value="viewer">Lecteur</option>
+      </select>
+
+      <button type="submit" class="create-button" style="margin-top: 10px;">Inviter</button>
+    </form>
+  </div>
+</div>
+
+
 
 
 {{-- === MODAL AJOUT LISTE === --}}
@@ -254,6 +283,22 @@ document.querySelectorAll('.card').forEach(cardEl => {
 window.onclick = e => {
   if (e.target === editCardModal) closeEditCardModal();
 };
+
+const inviteModal = document.getElementById('inviteModal');
+
+function openInviteModal() {
+  inviteModal.style.display = 'flex';
+}
+
+function closeInviteModal() {
+  inviteModal.style.display = 'none';
+}
+
+// Fermer si clic à l’extérieur
+window.onclick = (e) => {
+  if (e.target === inviteModal) closeInviteModal();
+};
+
 
 </script>
 @endsection
