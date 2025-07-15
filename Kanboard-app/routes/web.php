@@ -51,6 +51,11 @@ Route::get('/boards/{board}/cards', [CardController::class, 'index'])->name('car
 Route::post('/boards/{board}/invite', [BoardController::class, 'invite'])->name('boards.members.invite');
 Route::delete('/boards/{board}', [BoardController::class, 'destroy'])->name('boards.destroy');
 
+Route::patch('/boards/{board}/members/{user}/role', [BoardController::class, 'updateRole'])
+    ->name('boards.members.updateRole')
+    ->middleware('auth');
+
+
 Route::get('/cards/{card}/edit', [CardController::class, 'edit'])->name('cards.edit');
 Route::patch('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
 Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('cards.destroy');
