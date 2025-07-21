@@ -60,14 +60,12 @@ Route::get('/cards/{card}/edit', [CardController::class, 'edit'])->name('cards.e
 Route::patch('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
 Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('cards.destroy');
 Route::get('/boards/{board}/tasks', [\App\Http\Controllers\CardController::class, 'list'])->name('cards.list');
-
+Route::get('/boards/{board}/calendar', [CardController::class, 'calendar'])->name('boards.calendar');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::post('/tasks/move', [TaskController::class, 'move'])->name('tasks.move');
 
 require __DIR__.'/auth.php';

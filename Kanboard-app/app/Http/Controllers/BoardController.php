@@ -59,7 +59,7 @@ class BoardController extends Controller
             abort(403, 'Accès interdit');
         }
     
-        $board->load('lists.cards.assignedTo', 'lists.cards.createdBy', 'users'); // <- cette ligne est ESSENTIELLE
+        $board->load('lists.cards.assignedTo', 'lists.cards.createdBy', 'users'); 
     
         return view('boards.show', compact('board'));
     }
