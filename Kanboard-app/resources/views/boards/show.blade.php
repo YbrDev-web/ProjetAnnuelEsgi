@@ -493,24 +493,6 @@
 
 {{-- Header moderne --}}
 <div class="board-header">
-<<<<<<< HEAD
-    <div class="header-container">
-        <div class="board-title">
-            <i class="fa fa-layer-group"></i>
-            {{ $board->name }}
-        </div>
-        <div class="header-actions">
-            @if($board->user_id === auth()->id())
-                <button class="btn btn-secondary" onclick="openInviteModal()">
-                    <i class="fa fa-user-plus"></i>
-                    Partager
-                </button>
-            @endif
-            <a href="{{ route('dashboard') }}" class="btn btn-secondary">
-                <i class="fa fa-arrow-left"></i>
-                Retour
-            </a>
-=======
   <div class="title">
     <i class="fa fa-columns"></i> {{-- ou votre icône --}}
     {{ $board->name }}
@@ -571,7 +553,6 @@
 
             </div>
           @endforeach
->>>>>>> 7da307f (Travail en cours)
         </div>
     </div>
 </div>
