@@ -27,11 +27,15 @@ class GroupInvitationNotification extends Notification
 
     public function toMail($notifiable)
     {
+        $name = is_object($notifiable) && property_exists($notifiable, 'name') ? $notifiable->name : 'cher utilisateur';
+    
         return (new MailMessage)
-            ->subject('Invitation à rejoindre un groupe')
-            ->greeting("Bonjour {$notifiable->name}")
-            ->line("Vous avez été invité à rejoindre le tableau « {$this->board->name} ».")
-            ->action('Accepter l’invitation', url("/invitations/accept/{$this->token}"))
-            ->line('Si vous ne reconnaissez pas cette invitation, ignorez ce message.');
+        ->subject("Invitation à collaborer sur le tableau {$this->board->name}")
+        ->greeting("Salut {$name} !")
+        ->line("Vous êtes invité(e) à participer au tableau : {$this->board->name}.")
+        ->action('Rejoindre le projet', route('invitations.accept', $this->token))
+        ->line('Si ce message ne vous concerne pas, vous pouvez l’ignorer.')
+        ->salutation("L’équipe BoardTech");
     }
+    
 }

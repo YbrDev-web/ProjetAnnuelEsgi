@@ -39,7 +39,7 @@
                             @auth
                             <a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#a334f3] text-white text-sm font-bold leading-normal tracking-[0.015em]" href="{{ url('/dashboard') }}">Commencer</a>
                             @else
-                            <a class="text-white text-sm font-medium leading-normal"  href="{{ route('login') }}">Log in</a>
+                            <a class="text-white text-sm font-medium leading-normal"  href="{{ route('login') }}" style="margin-right: 10px;">Log in</a>
                             @if (Route::has('register'))
                             <a class="text-white text-sm font-medium leading-normal"  href="{{ route('register') }}">Register</a>
                             @endif
@@ -59,7 +59,7 @@
                                 <div class="flex flex-col gap-2 text-center">
                                     <h1
                                         class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                                        ProjectFlow : Visualisez Votre Succès
+                                        BoardTech : Visualisez Votre Succès
                                     </h1>
                                     <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
                                         Transformez votre gestion de projet avec notre tableau Kanban intuitif et notre vue calendrier. Collaborez en toute transparence et suivez les progrès sans
@@ -68,7 +68,9 @@
                                 </div>
                                 <button
                                     class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#a334f3] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                                    <span class="truncate">Commencer</span>
+                                    @if (Route::has('register'))
+                                        <a class="text-white text-sm font-medium leading-normal"  href="{{ route('register') }}">Commencer</a>
+                                    @endif
                                 </button>
                             </div>
                         </div>
@@ -137,13 +139,15 @@
                                     class="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
                                     Prêt à Améliorer Votre Gestion de Projet ?
                                 </h1>
-                                <p class="text-white text-base font-normal leading-normal max-w-[720px">Rejoignez des milliers d'équipes qui réalisent déjà plus avec ProjectFlow.</p>
+                                <p class="text-white text-base font-normal leading-normal max-w-[720px">Rejoignez des milliers d'équipes qui réalisent déjà plus avec BoardTech.</p>
                             </div>
                             <div class="flex flex-1 justify-center">
                                 <div class="flex justify-center">
                                     <button
                                         class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#a334f3] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] grow">
-                                        <span class="truncate">Démarrez Votre Essai Gratuit</span>
+                                        @if (Route::has('register'))
+                                            <a class="text-white text-sm font-medium leading-normal"  href="{{ route('register') }}">Register</a>
+                                        @endif
                                     </button>
                                 </div>
                             </div>
@@ -177,7 +181,7 @@
                                 </div>
                             </a>
                         </div>
-                        <p class="text-[#ad9cba] text-base font-normal leading-normal">© 2024 ProjectFlow. Tous droits réservés.</p>
+                        <p class="text-[#ad9cba] text-base font-normal leading-normal">© 2024 BoardTech. Tous droits réservés.</p>
                     </footer>
                 </div>
             </footer>

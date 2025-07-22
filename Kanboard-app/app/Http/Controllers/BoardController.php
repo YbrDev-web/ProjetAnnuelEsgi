@@ -10,6 +10,12 @@ use App\Models\BoardList;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\GroupInvitationNotification;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+
+
+
+
 
 class BoardController extends Controller
 {
@@ -54,15 +60,19 @@ class BoardController extends Controller
     }
 
     public function show(Board $board)
-    {
-        if (! $board->users->contains(auth()->id())) {
-            abort(403, 'Accès interdit');
-        }
-    
-        $board->load('lists.cards.assignedTo', 'lists.cards.createdBy', 'users'); 
-    
-        return view('boards.show', compact('board'));
+{
+    if (! $board->users->contains(auth()->id())) {
+        abort(403, 'Accès interdit');
     }
+
+    $board->load('lists.cards.assignedTo', 'lists.cards.createdBy', 'users');
+
+    // Ajoute ce bloc pour que $authRole soit défini
+    $authUser = $board->users()->where('user_id', auth()->id())->first();
+    $authRole = $authUser->pivot->role ?? 'member';
+
+    return view('boards.show', compact('board', 'authRole'));
+}
     
     public function project(Board $board)
     {
@@ -105,32 +115,50 @@ class BoardController extends Controller
     public function invite(Request $request, Board $board)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
-            'role' => 'required|in:admin,member,viewer'
+            'email' => 'required|email',
+            'role' => 'required|in:admin,member,viewer',
         ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if ($board->users->contains($user->id)) {
-            return back()->with('error', 'Cet utilisateur est déjà membre du tableau.');
-        }
-
-        if (Invitation::where('user_id', $user->id)->where('board_id', $board->id)->exists()) {
-            return back()->with('info', 'Une invitation est déjà en attente pour cet utilisateur.');
-        }
-
+    
         $token = Str::random(40);
-
-        Invitation::create([
-            'board_id' => $board->id,
-            'user_id' => $user->id,
-            'role' => $request->role,
-            'token' => $token,
-        ]);
-
-        $user->notify(new GroupInvitationNotification($board, $token));
-
-        return back()->with('success', 'Invitation envoyée.');
+        $email = $request->email;
+        $role = $request->role;
+    
+        $user = User::where('email', $email)->first();
+    
+        if ($user) {
+            $alreadyInvited = Invitation::where('user_id', $user->id)
+                ->where('board_id', $board->id)
+                ->exists();
+    
+            if (! $alreadyInvited) {
+                Invitation::create([
+                    'board_id' => $board->id,
+                    'user_id' => $user->id,
+                    'role' => $role,
+                    'token' => $token,
+                ]);
+    
+                $user->notify(new GroupInvitationNotification($board, $token));
+            }
+        } else {
+            $alreadyInvited = Invitation::where('email', $email)
+                ->where('board_id', $board->id)
+                ->exists();
+    
+            if (! $alreadyInvited) {
+                Invitation::create([
+                    'board_id' => $board->id,
+                    'email' => $email,
+                    'role' => $role,
+                    'token' => $token,
+                ]);
+    
+                // ✅ Envoie l'email manuellement
+                Notification::route('mail', $email)->notify(new GroupInvitationNotification($board, $token));
+            }
+        }
+    
+        return back()->with('success', 'Invitation envoyée avec succès.');
     }
 
     public function updateRole(Request $request, Board $board, User $user)

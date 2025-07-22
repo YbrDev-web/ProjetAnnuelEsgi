@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invitation extends Model
 {
-    protected $fillable = ['board_id', 'user_id', 'role', 'token'];
+    protected $fillable = [
+        'board_id',
+        'user_id',
+        'email',        // 👈 AJOUTE CECI
+        'role',
+        'token',
+    ];
 
     public function board() {
         return $this->belongsTo(Board::class);

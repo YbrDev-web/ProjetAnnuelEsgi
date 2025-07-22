@@ -493,7 +493,6 @@
 
 {{-- Header moderne --}}
 <div class="board-header">
-<<<<<<< HEAD
     <div class="header-container">
         <div class="board-title">
             <i class="fa fa-layer-group"></i>
@@ -510,74 +509,15 @@
                 <i class="fa fa-arrow-left"></i>
                 Retour
             </a>
-=======
-  <div class="title">
-    <i class="fa fa-columns"></i> {{-- ou votre icône --}}
-    {{ $board->name }}
-  </div>
-  <div class="actions">
-  <div class="actions">
-    @if($board->user_id === auth()->id())
-      <button class="small-button" onclick="openInviteModal()">Partager</button>
-    @endif
-</div>
-
-  </div>
-</div>
-
-<div style="padding: 0 15px 15px; display: flex; gap: 10px; margin-top: 20px;">
-              <a href="{{ route('dashboard') }}"class="small-button" style="flex: 1; text-align: center;">
-                Dashboard
-              </a>
-              <a href="{{ route('boards.show', $board) }}" class="small-button" style="flex: 1; text-align: center;">
-                📋 Kanban
-              </a>
-              <a href="{{ route('cards.list', $board) }}" class="small-button" style="flex: 1; text-align: center;">
-                📝 Liste
-              </a>
-              <a href="{{ route('boards.calendar', $board) }}" class="small-button" style="flex: 1; text-align: center;">
-                📅 Calendrier
-              </a>
-</div>
-<div class="wrapper">
-  {{-- Description du board --}}
-
-  {{-- === KANBAN === --}}
-  <div class="kanban-board">
-    @forelse($board->lists as $list)
-      <div class="list" data-list-id="{{ $list->id }}" data-terminal="{{ $list->is_terminal ? 'true' : 'false' }}">
-        <h3>{{ $list->title }}</h3>
-
-        <div class="card-container" ondrop="drop(event)" ondragover="allowDrop(event)">
-          @foreach($list->cards as $card)
-          <div class="card"
-            draggable="true"
-            ondragstart="drag(event)"
-            id="card-{{ $card->id }}"
-            data-card-id="{{ $card->id }}"
-            data-title="{{ $card->title }}"
-            data-description="{{ $card->description }}"
-            data-category="{{ $card->category }}"
-            data-priority="{{ $card->priority }}"
-            data-due-date="{{ $card->due_date }}"
-            data-assigned-to="{{ $card->assigned_to }}">
-
-              <strong>Titre : {{ $card->title }}</strong>
-              <p>Priorité : {{ $card->priority ?? 'pas de priorité.' }}</p>
-              <p>Date limite : {{ $card->due_date ?? 'pas de limite.' }}</p>
-              <p>Assigné à : 👤 {{ $card->assignedTo?->name ?? 'Non assigné' }}</p>
-              <p>Créé par : 👤 {{ $card->createdBy?->name ?? 'Pas de créateur' }}</p>
-
-
-            </div>
-          @endforeach
->>>>>>> 7da307f (Travail en cours)
         </div>
     </div>
 </div>
 
 {{-- Navigation tabs --}}
 <div class="nav-tabs">
+    <a href="{{ route('dashboard') }}"class="nav-tab ">
+      Dashboard
+    </a>
     <a href="{{ route('boards.show', $board) }}" class="nav-tab active">
         <i class="fa fa-columns"></i>
         Kanban

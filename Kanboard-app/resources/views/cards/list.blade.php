@@ -3,19 +3,79 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/cards-list.css') }}">
 
-<div style="padding: 0 15px 15px; display: flex; gap: 10px; margin-top: 20px;">
-              <a href="{{ route('dashboard') }}"class="small-button" style="flex: 1; text-align: center;">
-                Dashboard
-              </a>
-              <a href="{{ route('boards.show', $board) }}" class="small-button" style="flex: 1; text-align: center;">
-                📋 Kanban
-              </a>
-              <a href="{{ route('cards.list', $board) }}" class="small-button" style="flex: 1; text-align: center;">
-                📝 Liste
-              </a>
-              <a href="{{ route('boards.calendar', $board) }}" class="small-button" style="flex: 1; text-align: center;">
-                📅 Calendrier
-              </a>
+<style>
+    :root {
+        --pf-primary: #6366f1;
+        --pf-primary-dark: #4f46e5;
+        --pf-primary-light: #818cf8;
+        --pf-dark: #0f172a;
+        --pf-dark-secondary: #1e293b;
+        --pf-dark-tertiary: #334155;
+        --pf-text-light: #f1f5f9;
+        --pf-text-muted: #94a3b8;
+        --pf-accent: #f472b6;
+        --pf-success: #10b981;
+        --pf-warning: #f59e0b;
+        --pf-danger: #ef4444;
+    }
+     /* Navigation tabs */
+     .nav-tabs {
+        background: var(--pf-dark-secondary);
+        padding: 8px;
+        display: flex;
+        gap: 4px;
+        max-width: 1400px;
+        margin: 0 auto 24px;
+        border-radius: 12px;
+        width: calc(100% - 48px);
+        margin-left: 24px;
+        margin-right: 24px;
+        margin-top: 24px;
+    }
+
+    .nav-tab {
+        flex: 1;
+        padding: 12px 24px;
+        background: transparent;
+        color: var(--pf-text-muted);
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .nav-tab:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--pf-text-light);
+    }
+
+    .nav-tab.active {
+        background: var(--pf-primary);
+        color: white;
+    }
+</style>
+<div class="nav-tabs">
+    <a href="{{ route('dashboard') }}"class="nav-tab ">
+      Dashboard
+    </a>
+    <a href="{{ route('boards.show', $board) }}" class="nav-tab">
+        <i class="fa fa-columns"></i>
+        Kanban
+    </a>
+    <a href="{{ route('cards.list', $board) }}" class="nav-tab active">
+        <i class="fa fa-list"></i>
+        Liste
+    </a>
+    <a href="{{ route('boards.calendar', $board) }}" class="nav-tab">
+        <i class="fa fa-calendar"></i>
+        Calendrier
+    </a>
 </div>
 
 <div class="wrapper">
