@@ -140,7 +140,8 @@
 
 /* === Liste des boards === */
 .dashboard .board-list {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
@@ -166,7 +167,7 @@
   transition: 1s;
 }
 .dashboard .board-card strong {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 900;
   color: #111827;
 }
