@@ -51,6 +51,28 @@ function openRoleModal(boardId, userId, currentRole) {
     }
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const boardWrappers = document.querySelectorAll('.board-card-wrapper');
+  
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+  
+      boardWrappers.forEach(wrapper => {
+        const boardName = wrapper.querySelector('strong').textContent.toLowerCase();
+        const boardDesc = wrapper.querySelector('.board-badge')?.textContent.toLowerCase() || '';
+  
+        if (boardName.includes(searchTerm) || boardDesc.includes(searchTerm)) {
+          wrapper.style.display = 'block';
+        } else {
+          wrapper.style.display = 'none';
+        }
+      });
+    });
+  });
+  
+
+
 
 
 

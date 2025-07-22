@@ -31,7 +31,7 @@
         <h2>Vos tableaux</h2>
         <div style="display: flex; gap: 10px;">
           <div class="search-bar">
-            <input type="text" placeholder="Rechercher un tableau...">
+            <input type="text" id="searchInput" placeholder="Rechercher un tableau...">
           </div>
           <button class="create-button" onclick="openModal()">+ Créer un tableau</button>
         </div>

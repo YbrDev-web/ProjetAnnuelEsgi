@@ -149,14 +149,14 @@
 /* === Carte de board === */
 .dashboard .board-card {
   width: 300px; /* taille fixe harmonieuse */
-  height: 300px; /* taille uniforme pour toutes les cartes */
+  height: 250px; /* taille uniforme pour toutes les cartes */
   background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   overflow: hidden;
   transition: box-shadow 0.2s, transform 0.1s;
 }
