@@ -1,0 +1,275 @@
+/* Ajustements spécifiques pour le dashboard */
+.dashboard {
+    background-color: var(--bg-primary) !important;
+}
+
+.welcome {
+    background-color: var(--accent-primary) !important;
+    color: white !important;
+}
+
+.board-list .board-card {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+.board-list .board-card:hover {
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.board-badge {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-secondary) !important;
+}
+
+.create-button {
+    background-color: var(--accent-primary) !important;
+    color: white !important;
+}
+
+.create-button:hover {
+    background-color: var(--accent-hover) !important;
+}
+
+/* Ajustements pour la vue Kanban */
+.board-header {
+    background-color: var(--header-bg) !important;
+    color: white !important;
+}
+
+.kanban-board {
+    background-color: var(--kanban-bg) !important;
+}
+
+.list {
+    background-color: var(--list-bg) !important;
+    border: 1px solid var(--border-primary) !important;
+}
+
+.list h3 {
+    color: var(--text-primary) !important;
+}
+
+.card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+.card strong {
+    color: var(--text-primary) !important;
+}
+
+.card p {
+    color: var(--text-secondary) !important;
+}
+
+.add-list {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border: 2px dashed var(--border-primary) !important;
+}
+
+.add-list:hover {
+    background-color: var(--bg-secondary) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+/* Ajustements pour les modals */
+.modal {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal-content {
+    background-color: var(--bg-modal) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-primary) !important;
+}
+
+.modal-content h3 {
+    color: var(--text-primary) !important;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-primary) !important;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+.close-modal {
+    color: var(--text-tertiary) !important;
+}
+
+.close-modal:hover {
+    color: var(--text-primary) !important;
+}
+
+/* Ajustements pour la vue calendrier */
+.calendar-container {
+    background-color: var(--bg-primary) !important;
+}
+
+.calendar-header {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+#calendar {
+    background-color: var(--bg-card) !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+    border-color: var(--border-primary) !important;
+}
+
+.fc-col-header-cell {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+.fc-daygrid-day {
+    background-color: var(--bg-card) !important;
+}
+
+.fc-daygrid-day:hover {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.fc-day-today {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.fc-button {
+    background-color: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    color: white !important;
+}
+
+.fc-button:hover {
+    background-color: var(--accent-hover) !important;
+    border-color: var(--accent-hover) !important;
+}
+
+.fc-button-active {
+    background-color: var(--accent-hover) !important;
+}
+
+/* Ajustements pour la vue liste */
+.cards-list {
+    background-color: var(--bg-primary) !important;
+}
+
+.cards-list table {
+    background-color: var(--bg-card) !important;
+}
+
+.cards-list th {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
+}
+
+.cards-list td {
+    color: var(--text-primary) !important;
+    border-color: var(--border-primary) !important;
+}
+
+.cards-list tr:hover {
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* Sidebar adjustments */
+.sidebar {
+    background-color: var(--bg-secondary) !important;
+    border-right: 1px solid var(--border-primary) !important;
+}
+
+.sidebar a {
+    color: var(--text-secondary) !important;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Search bar */
+.search-bar input {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-primary) !important;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-tertiary) !important;
+}
+
+/* Boutons génériques */
+.small-button {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-primary) !important;
+}
+
+.small-button:hover {
+    background-color: var(--accent-primary) !important;
+    color: white !important;
+    border-color: var(--accent-primary) !important;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-secondary) !important;
+    border-top: 1px solid var(--border-primary) !important;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+/* Mode responsive */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+}

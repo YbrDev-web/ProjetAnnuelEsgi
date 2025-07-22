@@ -22,7 +22,7 @@
         <li><a href="{{ route('settings.index') }}">⚙️ Paramètres</a></li>
         <li><a href="{{ route('help.index') }}">❓ Aide</a></li>
       </ul>
-    </aside>  
+    </aside>
 
     <!-- Zone dashboard -->
     <main class="dashboard">
@@ -39,35 +39,35 @@
 
       <!-- Liste des tableaux -->
       <div class="board-list">
-      @forelse($boards as $board)
-  <div class="board-card-wrapper">
-    <a href="{{ route('boards.show', $board) }}" class="board-card" style="text-decoration: none; color: inherit;">
-      @if($board->image)
-        <img src="{{ asset('storage/' . $board->image) }}" alt="Image du tableau" width="200">
-      @endif
-      <strong>{{ $board->name }}</strong>
-      <div class="board-badge">{{ $board->description }}</div>
-      <div class="board-badge" style="margin-top: 5px;">
-        Rôle :
-        @if($board->user_id === auth()->id())
-          Propriétaire
-        @else
-          {{ ucfirst($board->pivot->role ?? 'membre') }}
-        @endif
-      </div>
-    </a>
+        @forelse($boards as $board)
+        <div class="board-card-wrapper">
+          <a href="{{ route('boards.show', $board) }}" class="board-card" style="text-decoration: none; color: inherit;">
+            @if($board->image)
+            <img src="{{ asset('storage/' . $board->image) }}" alt="Image du tableau" width="200">
+            @endif
+            <strong>{{ $board->name }}</strong>
+            <div class="board-badge">{{ $board->description }}</div>
+            <div class="board-badge" style="margin-top: 5px;">
+              Rôle :
+              @if($board->user_id === auth()->id())
+              Propriétaire
+              @else
+              {{ ucfirst($board->pivot->role ?? 'membre') }}
+              @endif
+            </div>
+          </a>
 
-    @if($board->user_id === auth()->id())
-      <form action="{{ route('boards.destroy', $board) }}" method="POST" style="margin-top: 5px;">
-        @csrf
-        @method('DELETE')
-        <button type="submit" onclick="return confirm('Supprimer ce tableau ?')" style="color: red;">🗑️ Supprimer</button>
-      </form>
-    @endif
-  </div>
-@empty
-  <p>Aucun tableau trouvé. Créez-en un !</p>
-@endforelse
+          @if($board->user_id === auth()->id())
+          <form action="{{ route('boards.destroy', $board) }}" method="POST" style="margin-top: 5px;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="return confirm('Supprimer ce tableau ?')" style="color: red;">🗑️ Supprimer</button>
+          </form>
+          @endif
+        </div>
+        @empty
+        <p>Aucun tableau trouvé. Créez-en un !</p>
+        @endforelse
 
       </div>
 
@@ -86,18 +86,18 @@
     <span class="close-modal" onclick="closeModal()">&times;</span>
     <h3>Créer un nouveau tableau</h3>
     <form action="{{ route('boards.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-  <label for="boardName">Nom du tableau</label>
-  <input type="text" id="boardName" name="name" required>
+      @csrf
+      <label for="boardName">Nom du tableau</label>
+      <input type="text" id="boardName" name="name" required>
 
-  <label for="description">Description</label>
-  <textarea id="description" name="description" rows="3"></textarea>
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="3"></textarea>
 
-  <label for="image">Image du tableau</label>
-  <input type="file" id="image" name="image" accept="image/*">
+      <label for="image">Image du tableau</label>
+      <input type="file" id="image" name="image" accept="image/*">
 
-  <button type="submit">Créer</button>
-</form>
+      <button type="submit">Créer</button>
+    </form>
 
   </div>
 </div>

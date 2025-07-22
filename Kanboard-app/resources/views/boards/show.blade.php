@@ -21,11 +21,21 @@
   </div>
 </div>
 <div class="menu_tableau" style="display: flex; flex-direction: row; gap: 20px; justify-content:center;">
-  <a href="{{ route('cards.list', $board) }}" style="color: white;">Voir les tâches en liste</a>
-  <a href="{{ route('dashboard') }}" style="color: white;">Dashboard</a>
+  <a href="{{ route('cards.list', $board) }}" style="color: black;">Voir les tâches en liste</a>
+  <a href="{{ route('dashboard') }}" style="color: black;">Dashboard</a>
   <a href=""></a>
 </div>
-  
+<div style="padding: 0 15px 15px; display: flex; gap: 10px;">
+              <a href="{{ route('boards.show', $board) }}" class="small-button" style="flex: 1; text-align: center;">
+                📋 Kanban
+              </a>
+              <a href="{{ route('cards.list', $board) }}" class="small-button" style="flex: 1; text-align: center;">
+                📝 Liste
+              </a>
+              <a href="{{ route('boards.calendar', $board) }}" class="small-button" style="flex: 1; text-align: center;">
+                📅 Calendrier
+              </a>
+            </div>
 <div class="wrapper">
   {{-- Description du board --}}
 

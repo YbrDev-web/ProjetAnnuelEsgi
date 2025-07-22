@@ -10,7 +10,7 @@ class Card extends Model
         'title', 'description', 'category', 'priority',
         'due_date', 'list_id', 'assigned_to', 'created_by'
     ];
-    
+
     public function assignee()
     {
         return $this->belongsTo(User::class, 'assigned_to');
@@ -26,17 +26,14 @@ class Card extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-    
 
         public function list()
     {
         return $this->belongsTo(BoardList::class, 'list_id');
     }
 
-    
 }

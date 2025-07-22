@@ -1,0 +1,188 @@
+/* public/css/calendar-theme.css */
+
+/* Intégration du calendrier avec le système de thème */
+
+/* Style général du calendrier */
+.fc {
+    font-family: inherit;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+    border-color: var(--border-primary) !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+    border-color: var(--border-primary) !important;
+}
+
+/* En-têtes */
+.fc-col-header-cell {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+.fc-col-header-cell-cushion {
+    color: var(--text-primary) !important;
+}
+
+/* Jours */
+.fc-daygrid-day {
+    background-color: var(--bg-card) !important;
+    transition: background-color 0.2s;
+}
+
+.fc-daygrid-day:hover {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.fc-day-today {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+    background-color: var(--accent-primary);
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+}
+
+/* Numéros de jours */
+.fc-daygrid-day-number {
+    color: var(--text-primary) !important;
+    padding: 4px !important;
+}
+
+.fc-day-other .fc-daygrid-day-number {
+    color: var(--text-tertiary) !important;
+}
+
+/* Événements */
+.fc-event {
+    border: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.fc-event:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.fc-event-title {
+    font-weight: 500;
+    padding: 2px 4px;
+}
+
+.fc-daygrid-event-dot {
+    display: none;
+}
+
+/* Vue semaine/jour avec heures */
+.fc-timegrid-slot {
+    height: 40px !important;
+}
+
+.fc-timegrid-slot-label {
+    color: var(--text-secondary) !important;
+}
+
+.fc-timegrid-axis {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Vue liste */
+.fc-list-table {
+    background-color: var(--bg-card) !important;
+}
+
+.fc-list-day-cushion {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+.fc-list-event:hover td {
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* Popover "plus d'événements" */
+.fc-popover {
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-primary) !important;
+}
+
+.fc-popover-header {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Indicateur de drag */
+.fc-event-dragging {
+    opacity: 0.75 !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.fc-event-resizing {
+    opacity: 0.75 !important;
+}
+
+/* Zone de drop */
+.fc-highlight {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border: 2px dashed var(--accent-primary) !important;
+}
+
+/* Sélection de plage */
+.fc-highlight {
+    background: rgba(59, 130, 246, 0.15) !important;
+}
+
+/* Mode sombre - ajustements spécifiques */
+[data-theme="dark"] .fc-event {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .fc-event:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7) !important;
+}
+
+[data-theme="dark"] .fc-day-today {
+    background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Animations */
+.fc-event {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fc-daygrid-day {
+    transition: background-color 0.2s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fc-toolbar {
+        flex-direction: column;
+    }
+    
+    .fc-toolbar-title {
+        margin: 0.5em 0 !important;
+    }
+    
+    .fc-button {
+        padding: 0.25em 0.5em !important;
+        font-size: 0.9em !important;
+    }
+    
+    .fc-daygrid-day-number {
+        font-size: 0.9em;
+    }
+    
+    .fc-event {
+        font-size: 0.85em;
+    }
+}

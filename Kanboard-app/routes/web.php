@@ -66,6 +66,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/cards/{card}/update-date', [CardController::class, 'updateDate'])->name('cards.updateDate');
+    Route::post('/lists/{list}/cards/calendar', [CardController::class, 'storeFromCalendar'])->name('cards.storeFromCalendar');
+    Route::get('/boards/{board}/calendar-events', [CardController::class, 'calendarEvents'])->name('boards.calendarEvents');
+    Route::post('/cards/{card}/update-dates', [CardController::class, 'updateDates'])->name('cards.updateDates');
+    Route::post('/cards/{card}/recurring/{date}', [CardController::class, 'updateRecurringInstance'])->name('cards.updateRecurringInstance');
+    Route::get('/boards/{board}/ical', [CardController::class, 'exportICal'])->name('boards.ical');
+    Route::get('/boards/{board}/calendar-events', [CardController::class, 'calendarEvents'])->name('boards.calendarEvents');
+    Route::post('/lists/{list}/cards/calendar', [CardController::class, 'storeFromCalendar'])->name('cards.storeFromCalendar');
+    Route::post('/cards/{card}/update-date', [CardController::class, 'updateDate'])->name('cards.updateDate');
+
 });
 
 require __DIR__.'/auth.php';

@@ -1,4 +1,4 @@
-/* Mode clair par défaut */
+/* Mode clair par défaut
 body {
     background-color: #f5f5f5;
     color: #222;
@@ -16,10 +16,10 @@ button#darkModeToggle {
     background: #e0e0e0;
     cursor: pointer;
     border-radius: 4px;
-}
+} */
 
 /* Mode sombre */
-.dark {
+/* .dark {
     background-color: #1e1e1e;
     color: #eee;
 }
@@ -31,4 +31,245 @@ button#darkModeToggle {
 .dark button#darkModeToggle {
     background: #444;
     color: white;
-}
+} */
+
+/* Variables CSS pour les thèmes */
+:root {
+    /* Thème clair (par défaut) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f4f6;
+    --bg-tertiary: #e5e7eb;
+    --bg-card: #ffffff;
+    --bg-modal: #ffffff;
+    
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-tertiary: #6b7280;
+    --text-inverse: #ffffff;
+    
+    --border-primary: #e5e7eb;
+    --border-secondary: #d1d5db;
+    
+    --accent-primary: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-danger: #dc2626;
+    --accent-success: #10b981;
+    --accent-warning: #f59e0b;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    
+    --kanban-bg: #f3f4f6;
+    --list-bg: #ffffff;
+    --card-bg: #ffffff;
+    --header-bg: #1f2937;
+  }
+  
+  /* Thème sombre */
+  [data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --bg-card: #1f2937;
+    --bg-modal: #1f2937;
+    
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --text-inverse: #111827;
+    
+    --border-primary: #374151;
+    --border-secondary: #4b5563;
+    
+    --accent-primary: #3b82f6;
+    --accent-hover: #60a5fa;
+    --accent-danger: #ef4444;
+    --accent-success: #10b981;
+    --accent-warning: #f59e0b;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    
+    --kanban-bg: #111827;
+    --list-bg: #1f2937;
+    --card-bg: #374151;
+    --header-bg: #111827;
+  }
+  
+  /* Détection automatique du thème système */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --bg-tertiary: #374151;
+      --bg-card: #1f2937;
+      --bg-modal: #1f2937;
+      
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+      --text-tertiary: #9ca3af;
+      --text-inverse: #111827;
+      
+      --border-primary: #374151;
+      --border-secondary: #4b5563;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      
+      --kanban-bg: #111827;
+      --list-bg: #1f2937;
+      --card-bg: #374151;
+      --header-bg: #111827;
+    }
+  }
+  
+  /* Application des variables aux éléments globaux */
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Cartes et conteneurs */
+  .card, .board-card, .modal-content {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+  }
+  
+  /* Bordures */
+  .border, hr {
+    border-color: var(--border-primary);
+  }
+  
+  /* Inputs et formulaires */
+  input, textarea, select {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    transition: all 0.3s ease;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Boutons */
+  button, .button, .btn {
+    background-color: var(--accent-primary);
+    color: var(--text-inverse);
+    transition: all 0.3s ease;
+  }
+  
+  button:hover, .button:hover, .btn:hover {
+    background-color: var(--accent-hover);
+  }
+  
+  /* Liens */
+  a {
+    color: var(--accent-primary);
+  }
+  
+  a:hover {
+    color: var(--accent-hover);
+  }
+  
+  /* Modals */
+  .modal {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: var(--bg-modal);
+    color: var(--text-primary);
+  }
+  
+  /* Kanban spécifique */
+  .wrapper {
+    background-color: var(--kanban-bg);
+  }
+  
+  .board-header {
+    background-color: var(--header-bg);
+    color: var(--text-inverse);
+  }
+  
+  .list {
+    background-color: var(--list-bg);
+    border: 1px solid var(--border-primary);
+  }
+  
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-secondary);
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-primary);
+  }
+  
+  .sidebar a {
+    color: var(--text-secondary);
+  }
+  
+  .sidebar a:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+  
+  /* Dashboard */
+  .dashboard {
+    background-color: var(--bg-primary);
+  }
+  
+  .welcome {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  
+  /* Bouton de basculement de thème */
+  .theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-primary);
+  }
+  
+  /* Animations */
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *:before,
+  .theme-transition *:after {
+    transition: all 0.3s !important;
+    transition-delay: 0 !important;
+  }
