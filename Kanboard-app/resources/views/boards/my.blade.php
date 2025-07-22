@@ -3,41 +3,50 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/boards.css') }}">
 
-<main class="dashboard">
-  <div class="section-header">
-    <h2>Vos tableaux</h2>
-    <div style="display: flex; gap: 10px;">
-      <div class="search-bar">
-        <input type="text" placeholder="Rechercher un tableau...">
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="{{ route('dashboard') }}">🏠 Tableau de bord</a></li>
+      <li><a href="{{ route('boards.my') }}">📁 Mes tableaux</a></li>
+      <li><a href="{{ route('groups.index') }}">👥 Groupes</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="dashboard">
+    <div class="section-header">
+      <h2>Vos tableaux</h2>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <div class="search-bar">
+          <input type="text" placeholder="Rechercher un tableau...">
+        </div>
+        <button class="create-button" onclick="openModal()">+ Créer un tableau</button>
       </div>
-      <button class="create-button" onclick="openModal()">+ Créer un tableau</button>
     </div>
-  </div>
 
-  <!-- Liste des tableaux -->
-  <div class="board-list">
-    @forelse($boards as $board)
-    <a href="{{ route('boards.show', $board) }}" class="board-card" style="text-decoration: none; color: inherit;">
-  <strong>{{ $board->name }}</strong>
-  <div class="board-badge">{{ $board->description }}</div>
-  <div class="board-badge" style="margin-top: 5px;">
-    Rôle :
-    @if($board->user_id === auth()->id())
-      Propriétaire
-    @else
-      {{ ucfirst($board->pivot->role ?? 'membre') }}
-    @endif
-  </div>
-</a>
+    <div class="board-list">
+      @forelse($boards as $board)
+        <a href="{{ route('boards.show', $board) }}" class="board-card">
+          <strong>{{ $board->name }}</strong>
+          <div class="board-badge">{{ $board->description }}</div>
+          <div class="board-badge">
+            Rôle :
+            @if($board->user_id === auth()->id())
+              Propriétaire
+            @else
+              {{ ucfirst($board->pivot->role ?? 'membre') }}
+            @endif
+          </div>
+        </a>
+      @empty
+        <p>Aucun tableau trouvé. Créez-en un !</p>
+      @endforelse
+    </div>
+  </main>
+</div>
 
-
-    @empty
-      <p>Aucun tableau trouvé. Créez-en un !</p>
-    @endforelse
-  </div>
-</main>
-
-<!-- Modal de création -->
+<!-- Modal -->
 <div class="modal" id="boardModal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -55,5 +64,20 @@
   </div>
 </div>
 
-<script src="{{ asset('js/dashboard.js') }}"></script>
+<script>
+  function openModal() {
+    document.getElementById('boardModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('boardModal').style.display = 'none';
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById('boardModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+</script>
 @endsection

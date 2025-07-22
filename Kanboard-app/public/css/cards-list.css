@@ -6,6 +6,19 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
+
+
+.wrapper .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3490dc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
   
   h2 {
     margin-bottom: 20px;
@@ -38,6 +51,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    color: black;
   }
   
   .task-table th,

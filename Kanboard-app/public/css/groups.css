@@ -1,92 +1,115 @@
-/* Style général */
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f7f9fc;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Section principale */
-  .dashboard {
-    padding: 20px 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* En-tête de section */
-  .section-header {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-  
-  .section-header h2 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  /* Liste des groupes */
-  .board-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  /* Carte de groupe */
-  .board-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-  }
-  
-  .board-card:hover {
-    transform: translateY(-3px);
-  }
-  
-  .board-card strong {
-    font-size: 18px;
-    color: #2c3e50;
-  }
-  
-  /* Badge */
-  .board-badge {
-    background-color: #eef2f7;
-    padding: 8px 10px;
-    border-radius: 6px;
-    margin-top: 8px;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  /* Boutons */
-  .small-button {
-    font-size: 14px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    background-color: violet;
+/* Layout global */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0f172a;
+}
 
-  }
-  
-  .small-button:hover {
-    opacity: 0.9;
-  } 
-  
-  /* Bouton "Gérer les membres" */
-  .small-button.manage {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  /* Bouton "Quitter le groupe" */
-  .small-button.quit {
-    color: #fff;
-  }
-  
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #1e293b;
+  padding: 20px;
+  border-right: 1px solid #334155;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px 15px;
+  color: #f1f5f9;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #334155;
+}
+
+/* Section principale */
+.dashboard {
+  flex-grow: 1;
+  padding: 30px;
+  color: #fff;
+}
+
+/* En-tête */
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+/* Liste de groupes */
+.board-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Carte de groupe */
+.board-card {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.board-card:hover {
+  transform: translateY(-4px);
+}
+
+.board-card strong {
+  font-size: 18px;
+  color: #fff;
+}
+
+/* Badges */
+.board-badge {
+  background-color: #334155;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+/* Boutons */
+.small-button {
+  font-size: 14px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #7c3aed;
+  color: white;
+  text-decoration: none;
+}
+
+.small-button:hover {
+  opacity: 0.9;
+}
+
+.small-button.manage {
+  background-color: #2563eb;
+}
+
+.small-button.quit {
+  background-color: #dc2626;
+}

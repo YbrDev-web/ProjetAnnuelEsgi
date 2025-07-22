@@ -1,3 +1,48 @@
+/* LAYOUT FLEX */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background-color: #1e293b;
+  padding: 20px;
+  border-right: 1px solid #334155;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px 15px;
+  color: #f1f5f9;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #334155;
+}
+
+/* Met à jour ton .dashboard */
+.dashboard {
+  flex-grow: 1;
+  padding: 30px;
+  color: white;
+}
+
+
 /* RESET */
 * {
     box-sizing: border-box;

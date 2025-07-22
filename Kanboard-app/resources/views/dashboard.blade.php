@@ -5,10 +5,7 @@
 
 <div class="wrapper">
 
-  <!-- Message de bienvenue -->
-  <div class="welcome">
-    👋 Bienvenue, {{ Auth::user()->name }} !
-  </div>
+  
 
   <!-- Contenu principal -->
   <div class="main-container">
@@ -19,8 +16,6 @@
         <li><a href="{{ route('dashboard') }}">🏠 Tableau de bord</a></li>
         <li><a href="{{ route('boards.my') }}">📁 Mes tableaux</a></li>
         <li><a href="{{ route('groups.index') }}">👥 Groupes</a></li>
-        <li><a href="{{ route('settings.index') }}">⚙️ Paramètres</a></li>
-        <li><a href="{{ route('help.index') }}">❓ Aide</a></li>
       </ul>
     </aside>
 
@@ -47,14 +42,14 @@
             @endif
             <strong>{{ $board->name }}</strong>
             <div class="board-badge">{{ $board->description }}</div>
-            <div class="board-badge" style="margin-top: 5px;">
+            <!--<div class="board-badge" style="margin-top: 5px;">
               Rôle :
               @if($board->user_id === auth()->id())
               Propriétaire
               @else
               {{ ucfirst($board->pivot->role ?? 'membre') }}
               @endif
-            </div>
+            </div> -->
           </a>
 
           @if($board->user_id === auth()->id())
