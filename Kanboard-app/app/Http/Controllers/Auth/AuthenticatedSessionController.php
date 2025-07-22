@@ -25,11 +25,32 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+    
         $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+    
+        // Appelle la méthode authenticated() définie plus bas dans ce contrôleur
+        return $this->authenticated($request, Auth::user());
     }
+    
+
+    protected function authenticated(Request $request, $user)
+{
+    $token = session()->pull('invitation_token');
+
+    if ($token) {
+        $invitation = \App\Models\Invitation::where('token', $token)->first();
+
+        if ($invitation && $invitation->email === $user->email) {
+            $invitation->board->users()->attach($user->id, ['role' => $invitation->role]);
+            $invitation->delete();
+
+            return redirect()->route('boards.show', $invitation->board)
+                ->with('success', 'Bienvenue ! Vous avez rejoint le tableau.');
+        }
+    }
+
+    return redirect()->route('dashboard');
+}
 
     /**
      * Destroy an authenticated session.

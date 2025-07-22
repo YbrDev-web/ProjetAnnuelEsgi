@@ -6,6 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\Board;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
+
 
 class GroupInvitationNotification extends Notification
 {
@@ -27,15 +30,26 @@ class GroupInvitationNotification extends Notification
 
     public function toMail($notifiable)
     {
-        $name = is_object($notifiable) && property_exists($notifiable, 'name') ? $notifiable->name : 'cher utilisateur';
+        $isRegisteredUser = isset($notifiable->name);
+        $name = $isRegisteredUser ? $notifiable->name : 'utilisateur';
+        $greeting = $isRegisteredUser ? "Salut {$name} !" : "Bonjour cher utilisateur";
     
-        return (new MailMessage)
-        ->subject("Invitation à collaborer sur le tableau {$this->board->name}")
-        ->greeting("Salut {$name} !")
-        ->line("Vous êtes invité(e) à participer au tableau : {$this->board->name}.")
-        ->action('Rejoindre le projet', route('invitations.accept', $this->token))
-        ->line('Si ce message ne vous concerne pas, vous pouvez l’ignorer.')
-        ->salutation("L’équipe BoardTech");
+        // ✅ Lien signé valable 2 minutes
+        $signedUrl = URL::temporarySignedRoute(
+            'invitations.accept',           // nom de la route
+            Carbon::now()->addMinutes(2),   // lien expirera dans 2 minutes
+            ['token' => $this->token]
+        );
+    
+        return (new \Illuminate\Notifications\Messages\MailMessage)
+            ->subject("Invitation à rejoindre le tableau « {$this->board->name} »")
+            ->greeting($greeting)
+            ->line("Vous avez été invité à rejoindre le tableau « {$this->board->name} ».")
+            ->action("Accepter l’invitation", $signedUrl)
+            ->line("⚠️ Ce lien expirera dans 2 minutes.")
+            ->line("Si vous ne reconnaissez pas cette invitation, ignorez ce message.")
+            ->salutation("L’équipe BoardTech");
     }
+
     
 }

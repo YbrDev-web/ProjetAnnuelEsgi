@@ -4,20 +4,21 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Invitation;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use App\Notifications\WelcomeNotification;
-
 
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Affiche le formulaire d’inscription.
      */
     public function create(): View
     {
@@ -25,37 +26,58 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Gère la création d’un nouvel utilisateur.
      */
     public function store(Request $request): RedirectResponse
-{
-    $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    ]);
+    {
+        // Validation des données
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'role' => 'member', // ou 'admin' si tu veux pour un test
-    ]);
-    
+        // Création de l'utilisateur
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => Hash::make($request->password),
+            'role'     => 'member',
+        ]);
 
-    // Envoi de la notification de bienvenue (facultatif)
-    $user->notify(new WelcomeNotification());
+        // Envoi d’une notification de bienvenue
+        $user->notify(new WelcomeNotification());
 
-    event(new Registered($user));
+        // Déclenche l’événement d’enregistrement
+        event(new Registered($user));
 
-    Auth::login($user);
+        // Connexion de l'utilisateur
+        Auth::login($user);
 
-    // ✅ Redirection selon le rôle
-    return redirect()->route(
-        $user->role === 'admin' ? 'admin.dashboard' : 'dashboard'
-    );
-}
+        // ✅ Traitement d’une éventuelle invitation
+        $token = Session::pull('invitation_token');
 
+        if ($token) {
+            $invitation = Invitation::where('token', $token)->first();
+
+            if ($invitation && $invitation->email === $user->email) {
+                if (! $invitation->board->users->contains($user->id)) {
+                    $invitation->board->users()->attach($user->id, ['role' => $invitation->role]);
+                }
+
+                $invitation->delete();
+
+                return redirect()->route('boards.show', $invitation->board)
+                    ->with('success', 'Bienvenue ! Vous avez rejoint le tableau "' . $invitation->board->name . '" avec succès.');
+            } else {
+                return redirect()->route('dashboard')
+                    ->with('error', 'Votre adresse e-mail ne correspond pas à l’invitation.');
+            }
+        }
+
+        // Redirection normale après inscription sans invitation
+        return redirect()->route(
+            $user->role === 'admin' ? 'admin.dashboard' : 'dashboard'
+        );
+    }
 }

@@ -39,7 +39,11 @@ Route::get('/boards/my', [BoardController::class, 'myBoards'])->name('boards.my'
 Route::get('/groups', [GroupController::class, 'index'])->name('groups.index');
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 Route::get('/help', [HelpController::class, 'index'])->name('help.index');
+Route::get('/invitations/accept/{token}', [InvitationController::class, 'accept'])
+    ->name('invitations.accept')
+    ->middleware('signed');
 Route::get('/invitations/accept/{token}', [InvitationController::class, 'accept'])->name('invitations.accept');
+
 Route::get('/boards/{board}/project', [BoardController::class, 'project'])->name('boards.project');
 Route::post('/boards/{board}/lists', [ListController::class, 'store'])->name('lists.store');
 Route::post('/lists/{list}/cards', [CardController::class, 'store'])->name('cards.store');
