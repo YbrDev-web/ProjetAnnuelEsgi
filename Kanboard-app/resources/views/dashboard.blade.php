@@ -47,14 +47,6 @@
       @endif
       <strong>{{ $board->name }}</strong>
       <div class="board-badge">{{ $board->description }}</div>
-      <div class="board-badge" style="margin-top: 5px;">
-        Rôle :
-        @if($board->user_id === auth()->id())
-          Propriétaire
-        @else
-          {{ ucfirst($board->pivot->role ?? 'membre') }}
-        @endif
-      </div>
     </a>
 
     @if($board->user_id === auth()->id())
